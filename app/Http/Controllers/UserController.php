@@ -22,6 +22,7 @@ class UserController extends Controller
             'user_type' => 'required|in:admin,tenant,owner',
         ]);
 
+
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
