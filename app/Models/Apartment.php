@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Apartment extends Model
 {
@@ -17,4 +18,16 @@ class Apartment extends Model
         'apartment_images',
         'apartment_status',
     ];
+
+    // علاقة مع المالك
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // علاقة مع المدينة
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
 }
