@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ResponseHelper;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -30,15 +29,13 @@ class UserController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
             'date_of_birth' => $request->date_of_birth,
-            'profile_image' => 'http://127.0.0.1:8000/storage/' . $request->file('profile_image')->store('profiles', 'public'),
-            'id_image' => 'http://127.0.0.1:8000/storage/' . $request->file('id_image')->store('ids', 'public'),
+            'profile_image' => $request->file('profile_image')->store('profiles', 'public'),
+            'id_image' => $request->file('id_image')->store('ids', 'public'),
             'user_type' => $request->user_type,
             'status' => 'pending',
         ]);
-        return ResponseHelper::jsonResponse($user, 'User registered successfully', 201);
-        // return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
+        return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
     }
-
 
 
     public function login(Request $request)
