@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gov extends Model
 {
     protected $fillable = [
-
+        'gov_id',
         'name'
     ];
 }
